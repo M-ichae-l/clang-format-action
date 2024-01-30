@@ -36,6 +36,8 @@ You can sponsor me [here](https://github.com/sponsors/jidicula)!
 * `check-path` [optional]: The path to the directory in the repo that should be checked for C/C++/Protobuf formatting.
   * Default: `.`
   * For cleaner output (i.e. with no double-slashed paths), the final directory in this path should have no trailing slash, e.g. `src` and not `src/`.
+* `clang-format-style-path` Required: The path to the .clang-format file
+  * Default: `.`
 * `fallback-style` [optional]: The fallback style for `clang-format` if no `.clang-format` file exists in your repository.
   * Default: `llvm`
   * Available values: `LLVM`, `Google`, `Chromium`, `Mozilla`, `WebKit` and others listed in the `clang-format` [docs for BasedOnStyle](https://clang.llvm.org/docs/ClangFormatStyleOptions.html#configurable-format-style-options).

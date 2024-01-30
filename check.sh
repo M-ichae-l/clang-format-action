@@ -21,9 +21,9 @@ format_diff() {
 	local filepath="$1"
 	# Invoke clang-format with dry run and formatting error output
 	if [[ $CLANG_FORMAT_MAJOR_VERSION -gt "9" ]]; then
-		local_format="$(docker run -i -v "$(pwd)":"$(pwd)" -w "$(pwd)" --rm ghcr.io/jidicula/clang-format:"$CLANG_FORMAT_MAJOR_VERSION" -n --Werror --style=file --fallback-style="$FALLBACK_STYLE" "${filepath}")"
+		local_format="$(docker run -i -v "$(pwd)":"$(pwd)" -w "$(pwd)" --rm ghcr.io/jidicula/clang-format:"$CLANG_FORMAT_MAJOR_VERSION" -n --Werror --style=file:"$STYLE_PATH" --fallback-style="$FALLBACK_STYLE" "${filepath}")"
 	else # Versions below 9 don't have dry run
-		formatted="$(docker run -i -v "$(pwd)":"$(pwd)" -w "$(pwd)" --rm ghcr.io/jidicula/clang-format:"$CLANG_FORMAT_MAJOR_VERSION" --style=file --fallback-style="$FALLBACK_STYLE" "${filepath}")"
+		formatted="$(docker run -i -v "$(pwd)":"$(pwd)" -w "$(pwd)" --rm ghcr.io/jidicula/clang-format:"$CLANG_FORMAT_MAJOR_VERSION" --style=file:"$STYLE_PATH" --fallback-style="$FALLBACK_STYLE" "${filepath}")"
 		local_format="$(diff -q <(cat "${filepath}") <(echo "${formatted}"))"
 	fi
 
@@ -43,9 +43,10 @@ format_diff() {
 
 CLANG_FORMAT_MAJOR_VERSION="$1"
 CHECK_PATH="$2"
-FALLBACK_STYLE="$3"
-EXCLUDE_REGEX="$4"
-INCLUDE_REGEX="$5"
+STYLE_PATH="$3"
+FALLBACK_STYLE="$4"
+EXCLUDE_REGEX="$5"
+INCLUDE_REGEX="$6"
 
 # Set the regex to an empty string regex if nothing was provided
 if [[ -z $EXCLUDE_REGEX ]]; then
