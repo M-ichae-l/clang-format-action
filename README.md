@@ -2,6 +2,17 @@
 
 [![shell-lint](https://github.com/jidicula/clang-format-action/workflows/shell-lint/badge.svg?branch=main)](https://github.com/jidicula/clang-format-action/actions?query=workflow%3Ashell-lint+branch%3Amain)
 
+# About this project
+This is a mbed coding style chack that refers to folllowing webs and GtiHub repos.
+* https://github.com/jidicula/clang-format-action
+* https://github.com/mrousavy/clang-format-action
+* https://releases.llvm.org/17.0.1/tools/clang/docs/ClangFormatStyleOptions.html
+* https://os.mbed.com/docs/mbed-os/v6.16/contributing/style.html#coding-style
+Thanks to all contrubuter of this project.
+
+This projects combines `fallback-style` and `customized style`.
+* Add your customized coding rules at root repo. For example `coding_style_mbed`.
+
 
 # clang-format-action
 GitHub Action for `clang-format` checks. Note that this Action does **NOT** format your code for you - it only verifies that your repository's code follows your project's formatting conventions.
